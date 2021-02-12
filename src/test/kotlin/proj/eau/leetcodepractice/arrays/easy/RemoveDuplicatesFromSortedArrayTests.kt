@@ -22,6 +22,11 @@ class RemoveDuplicatesFromSortedArrayTests {
          * Runtime: 5.05%
          * Memory: 35.98%
          */
+        /**
+         * Efficiency:
+         * Time: O(n^2)
+         * Space: O(1)
+         */
         private fun removeDuplicates1(nums: Array<Int>) : Int {
             // mark the end of the array
             var endIndex = nums.size
@@ -50,6 +55,10 @@ class RemoveDuplicatesFromSortedArrayTests {
          * https://leetcode.com/submissions/detail/455084229/?from=explore&item_id=727
          * Runtime: 100%
          * Memory: 27.93%
+         */
+        /** Efficiency
+         * Time: O(n)
+         * Space: O(1)
          */
         private fun removeDuplicates2(nums: Array<Int>) : Int {
             // store num of unique values
@@ -104,7 +113,6 @@ class RemoveDuplicatesFromSortedArrayTests {
         length `should be equal to` expectedLength
         array.copyOfRange(0, length) `should be equal to` expectedArray
     }
-
 
     @ParameterizedTest
     @MethodSource("generateData")
