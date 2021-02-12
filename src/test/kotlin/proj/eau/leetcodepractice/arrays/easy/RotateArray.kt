@@ -15,7 +15,8 @@ class RotateArray {
      */
 
     companion object {
-        /** Results
+        /**
+         * Results
          * https://leetcode.com/submissions/detail/455098098/?from=explore&item_id=646
          * Runtime: 5.58%
          * Memory: 95.89%
@@ -25,8 +26,11 @@ class RotateArray {
          * Time: O(k * n)
          * Space: O(1)
          */
+        /**
+         * Summary:
+         * brute force - just rotate k % nums.size times
+         */
         private fun rotate1(nums: Array<Int>, k: Int) {
-            // brute force - just rotate k % nums.size times
             // ex: if an array has 3 values and shifts 3 times...everything stays the same
             if (nums.isEmpty()) return
             val trueShift = k % nums.size
@@ -37,6 +41,10 @@ class RotateArray {
             }
 
         }
+
+        /**
+         * Helper method that rotates an array just once
+         */
         private fun rotate1Helper(nums:Array<Int>) {
             // if it's empty, don't bother
             if (nums.isEmpty()) {
@@ -60,10 +68,39 @@ class RotateArray {
             }
         }
 
+        /**
+         * Results:
+         * https://leetcode.com/submissions/detail/455230892/?from=explore&item_id=646
+         * Runtime: 100%
+         * Memory: 29.92%
+         */
+        /**
+         * Efficiency:
+         * Time: O(n)
+         * Space: O(2n) = O(n)
+         */
+        /**
+         * Summary:
+         * Did some math to take the array size and k to figure out which index corresponds to the shifted value.
+         * Created a array copy so that we don't override any values we need.
+         */
+        private fun rotate2(nums: Array<Int>, k: Int) {
+            // if nums is empty or doesn't need to be shifted, exit
+            if (nums.isEmpty() || k % nums.size == 0) return
+            val copyNums = nums.copyOf()
+
+            for (i in copyNums.indices) {
+                val origIndex = (i + k) % nums.size
+                nums[origIndex] = copyNums[i]
+            }
+        }
+
         // Used to generate test cases
         @JvmStatic
         fun generateData(): Stream<Arguments> = Stream.of(
-                Arguments.of(::rotate1)
+                Arguments.of(::rotate1),
+                Arguments.of(::rotate2)
+
         )
     }
 
